@@ -16,7 +16,7 @@ services:
     build: ./unbound
     container_name: unbound
     volumes:
-      - '/unbound_config:/opt/unbound/etc/unbound/'
+      - '/unbound_config:/etc/unbound/'
     restart: unless-stopped
     networks:
       - pihole_network

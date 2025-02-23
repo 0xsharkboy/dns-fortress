@@ -1,7 +1,10 @@
-FROM mvance/unbound:1.21.1
+FROM alpine:3.21
+
+# Install unbound
+RUN apk add --no-cache unbound
 
 # Copy unbound config
-COPY ./unbound.conf /opt/unbound/etc/unbound/unbound.conf
+COPY ./unbound.conf /etc/unbound/unbound.conf
 
 # Download root hints
 RUN mkdir -p /var/lib/unbound/ && \
@@ -10,3 +13,5 @@ RUN mkdir -p /var/lib/unbound/ && \
 # Create log file
 RUN mkdir -p /var/log/unbound && \
     touch /var/log/unbound/unbound.log
+
+CMD ["unbound", "-d"]
