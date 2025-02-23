@@ -11,4 +11,5 @@ COPY ./unbound.conf /etc/unbound/unbound.conf
 RUN mkdir -p /var/lib/unbound
 
 # Run Unbound
-CMD ["./entrypoint.sh"]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ./entrypoint.sh
