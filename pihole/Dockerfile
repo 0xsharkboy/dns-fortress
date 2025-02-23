@@ -7,7 +7,6 @@ RUN apk add unbound && \
     chown unbound:unbound /var/log/unbound/unbound.log
 
 COPY ./unbound.conf /etc/unbound/unbound.conf
-RUN wget https://www.internic.net/domain/named.root -qO- | tee /var/lib/unbound/root.hints
 
 # Replace upstream DNS with unbound (127.0.0.1#5335)
 RUN sed -i '/^  upstreams = \[/,/^  \]/c\  upstreams = [\n    "127.0.0.1#5335"\n  ]' /etc/pihole/pihole.toml
