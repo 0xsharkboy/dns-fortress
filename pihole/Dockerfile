@@ -1,7 +1,7 @@
-FROM pihole/pihole:latest
+FROM pihole/pihole:2025.02.4
 
 # Install and configure unbound
-RUN apk add unbound && \
+RUN apk add --no-cache unbound && \
     mkdir -p /var/log/unbound && \
     touch /var/log/unbound/unbound.log && \
     chown unbound:unbound /var/log/unbound/unbound.log
