@@ -2,9 +2,9 @@ services:
   pihole:
     build: ./pihole
     container_name: pihole
+    hostname: pihole
     environment:
       TZ: 'Europe/Paris'
-      WEBPASSWORD: 'TOREPLACE'
     volumes:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
@@ -32,9 +32,9 @@ services:
       - -u
       - pihole:53
       - -c
-      - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/pihole-your-domain-name/pihole-your-domain-name.crt
+      - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your-domain-name/your-domain-name.crt
       - -k
-      - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/pihole-your-domain-name/pihole-your-domain-name.key
+      - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your-domain-name/your-domain-name.key
       - -t
       - "853"
 

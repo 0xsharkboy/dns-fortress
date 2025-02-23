@@ -2,3 +2,6 @@ pihole-your-domain-name {
   reverse_proxy pihole:80
   redir / /admin{uri}
 }
+
+your-domain-name
+
