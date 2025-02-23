@@ -8,8 +8,5 @@ RUN apk add unbound && \
 
 COPY ./unbound.conf /etc/unbound/unbound.conf
 
-# Replace upstream DNS with unbound (127.0.0.1#5335)
-RUN sed -i '/^  upstreams = \[/,/^  \]/c\  upstreams = [\n    "127.0.0.1#5335"\n  ]' /etc/pihole/pihole.toml
-
 # Run Unbound
 CMD ["./entrypoint.sh"]
