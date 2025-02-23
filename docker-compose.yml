@@ -9,6 +9,18 @@ services:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
     restart: unless-stopped
+    networks:
+      - pihole_network
+
+  unbound:
+    build: ./unbound
+    container_name: unbound
+    volumes:
+      - '/unbound_config:/opt/unbound/etc/unbound/'
+    restart: unless-stopped
+    networks:
+      - pihole_network
+
   caddy:
     image: caddy:latest
     container_name: caddy
@@ -18,7 +30,11 @@ services:
     volumes:
       - './Caddyfile:/etc/caddy/Caddyfile'
       - './caddy_data:/data'
+      - './caddy_config:/config'
     restart: unless-stopped
+    networks:
+      - pihole_network
+
   dnsproxy:
     image: adguard/dnsproxy:latest
     container_name: dnsproxy
@@ -36,4 +52,9 @@ services:
       - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your-domain-name/your-domain-name.key
       - -t
       - "853"
+    networks:
+      - pihole_network
 
+networks:
+  pihole_network:
+    driver: bridge
