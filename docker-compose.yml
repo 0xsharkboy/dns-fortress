@@ -1,6 +1,6 @@
 services:
   pihole:
-    image: pihole/pihole:2025.02.4
+    image: pihole/pihole:2025.02.6
     container_name: pihole
     hostname: pihole
     environment:
