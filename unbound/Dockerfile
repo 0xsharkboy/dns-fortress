@@ -1,7 +1,7 @@
 FROM debian:bookworm-slim
 
 # Disable interactions
-ENV DEBIAN_FRONTEND=noninteractive 
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Installer Unbound and wget
 RUN apt-get update && \
