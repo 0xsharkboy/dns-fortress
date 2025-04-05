@@ -56,4 +56,8 @@ services:
 networks:
   pihole_network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.26.0.0/16
+          gateway: 172.26.0.1
 
