@@ -1,4 +1,4 @@
-your-domain-name {
+{$FQDN} {
   reverse_proxy pihole:80
   redir / /admin{uri}
 }

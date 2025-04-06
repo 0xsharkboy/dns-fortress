@@ -56,39 +56,18 @@ git clone https://github.com/0xsharkboy/dns-fortress.git
 cd dns-fortress
 ```
 
-Here’s an improved and more detailed version of that section, written in a clear and user-friendly way:
-
 ### 2. Configure Your Domain Name for HTTPS
 
-To enable DNS-over-HTTPS (DoH) using your own domain and valid TLS certificates, you'll need to update both the `Caddyfile` and the `dnsproxy` service in `docker-compose.yml`.
+Start by creating a `.env` file from the example provided:
 
-#### 🔧 Step-by-Step
+```bash
+cp .env.example .env
+```
 
-1. **Update the `Caddyfile`**  
-   Replace all instances of `your-domain-name` with your actual domain (e.g., `dns.example.com`).  
-   Example:
-   ```text
-   dns.example.com {
-       reverse_proxy pihole:80
-       redir / /admin{uri}
-   }
-   ```
+Next, open the `.env` file and update the `FQDN` variable to reflect your actual domain name (e.g., `FQDN=dns.example.com`).
 
-2. **Update `dnsproxy` Configuration in `docker-compose.yml`**
-
-   Find the `dnsproxy` service and update the certificate and key paths to reflect your domain name.  
-   Replace this:
-   ```yaml
-   - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your-domain-name/your-domain-name.crt
-   - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your-domain-name/your-domain-name.key
-   ```
-   With your actual domain:
-   ```yaml
-   - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/dns.example.com/dns.example.com.crt
-   - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/dns.example.com/dns.example.com.key
-   ```
-
-> ⚠️ **Make sure** your domain's A record is pointing to your server's public IP before launching the stack. Caddy needs this to successfully obtain certificates from Let's Encrypt.
+> ⚠️ **Important:** Before proceeding, ensure your domain's **A record** is correctly pointing to your server's **public IP address**.  
+> This is required for **Caddy** to successfully issue HTTPS certificates via **Let's Encrypt**.
 
 ### 3. Run the stack
 

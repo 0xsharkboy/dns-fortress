@@ -2,3 +2,4 @@ caddy_config/
 caddy_data/
 etc-pihole/
 etc-dnsmasq.d/
+.env

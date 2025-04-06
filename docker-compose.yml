@@ -29,6 +29,8 @@ services:
       - './Caddyfile:/etc/caddy/Caddyfile'
       - './caddy_data:/data'
       - './caddy_config:/config'
+    env_file:
+      - .env
     networks:
       - pihole_network
     restart: unless-stopped
@@ -41,13 +43,15 @@ services:
     restart: unless-stopped
     volumes:
       - './caddy_data:/data'
+    env_file:
+      - .env
     command:
       - -u
       - pihole:53
       - -c
-      - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your-domain-name/your-domain-name.crt
+      - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${FQDN}/${FQDN}.crt
       - -k
-      - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your-domain-name/your-domain-name.key
+      - /data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${FQDN}/${FQDN}.key
       - -t
       - "853"
     networks:
