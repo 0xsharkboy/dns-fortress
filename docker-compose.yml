@@ -9,7 +9,8 @@ services:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
     networks:
-      - pihole_network
+      pihole_network:
+        ipv4_address: 172.26.0.10
     restart: unless-stopped
 
   unbound:
