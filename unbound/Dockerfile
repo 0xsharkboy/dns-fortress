@@ -3,9 +3,9 @@ FROM debian:bookworm-slim
 # Disable interactions
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Installer Unbound and wget
+# Installer Unbound and dependencies
 RUN apt-get update && \
-    apt-get install -y unbound wget
+    apt-get install -y unbound wget dnsutils
 
 # Copy Unbound config
 COPY ./unbound.conf /etc/unbound/unbound.conf.d/pi-hole.conf

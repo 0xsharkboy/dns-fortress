@@ -18,6 +18,11 @@ services:
     build: ./unbound
     networks:
       - pihole_network
+    healthcheck:
+      test: ["CMD", "dig", "google.com", "@127.0.0.1", "-p", "5335"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     restart: unless-stopped
 
   caddy:
